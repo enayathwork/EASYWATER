@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyWater — Customized Water Bottles for Any Event</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+  :root{
+    --ink:#0f172a; --ocean:#0284c7; --cyan:#06b6d4; --paper:#f8fafc;
+  }
+  html{scroll-behavior:smooth; scroll-padding-top:80px;}
+  body{font-family:'Inter',sans-serif; background:var(--paper); color:var(--ink);}
+  h1,h2,h3,.display{font-family:'Sora',sans-serif;}
+  .glass{background:rgba(255,255,255,.7); backdrop-filter:blur(14px); border:1px solid rgba(15,23,42,.06);}
+  .grad-ocean{background:linear-gradient(135deg,var(--ocean),var(--cyan));}
+  .grad-text{background:linear-gradient(135deg,var(--ocean),var(--cyan)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .ripple{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
+  .swatch{width:34px;height:34px;border-radius:9999px;cursor:pointer;border:2px solid #fff;box-shadow:0 0 0 2px rgba(15,23,42,.15);transition:transform .15s;}
+  .swatch.active{box-shadow:0 0 0 3px var(--ocean);}
+  .swatch:hover{transform:scale(1.08);}
+  .theme-chip{cursor:pointer;border-radius:12px;padding:10px;border:1.5px solid rgba(15,23,42,.1);transition:.15s;}
+  .theme-chip.active{border-color:var(--ocean); background:rgba(2,132,199,.06);}
+  input[type=range]{accent-color:var(--ocean);}
+  .step-line{background:linear-gradient(90deg,var(--ocean),var(--cyan));}
+  ::-webkit-scrollbar{height:6px;width:6px;} ::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:99px;}
+  .fade-up{animation:fadeUp .6s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){.fade-up{animation:none;}}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-40 glass" style="padding-top:env(safe-area-inset-top,0px);">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-2 min-w-0">
+      <svg class="w-8 h-8 sm:w-9 sm:h-9 shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logoGrad" x1="4" y1="2" x2="36" y2="38" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#0284c7"/>
+            <stop offset="1" stop-color="#06b6d4"/>
+          </linearGradient>
+        </defs>
+        <path d="M16 3h8v5.2c0 .9.4 1.7 1 2.4l7.4 8.4c1.7 1.9 2.6 4.4 2.6 6.9v.3C35 31.8 29.6 37 22.9 37h-5.8C10.4 37 5 31.8 5 25.2v-.3c0-2.5.9-5 2.6-6.9L15 9.6c.6-.7 1-1.5 1-2.4V3Z" fill="url(#logoGrad)"/>
+        <path d="M9.5 24.5c2.2 0 2.2 2 4.4 2s2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 4.4-2 2.2 2 4.4 2" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>
+      </svg>
+      <span class="font-bold text-base sm:text-lg display truncate">EasyWater</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+      <a href="#customize" class="hover:text-slate-900">Design Your Bottle</a>
+      <a href="#storyboard" class="hover:text-slate-900">Ad Preview</a>
+      <a href="#events" class="hover:text-slate-900">Occasions</a>
+    </nav>
+    <a id="navCta" href="#" target="_blank" class="hidden sm:flex items-center gap-2 bg-[var(--ink)] text-white text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-slate-800 transition">
+      <i data-lucide="message-circle" class="w-4 h-4"></i> Get Custom Quote
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="pt-32 pb-16 px-5 sm:px-8 max-w-7xl mx-auto">
+  <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div class="fade-up">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-100">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> No Minimum Order Quantity
+      </span>
+      <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] mt-5 text-slate-900">
+        Customized water bottles for <span class="grad-text">any event</span>
+      </h1>
+      <p class="text-lg text-slate-600 mt-5 max-w-lg">Order even 1 water bottle pack — your name, your logo, your moment. We handle the entire journey from design to doorstep.</p>
+      <div class="flex flex-wrap gap-3 mt-8">
+        <a href="#customize" class="grad-ocean text-white font-semibold px-6 py-3.5 rounded-full flex items-center gap-2 shadow-lg shadow-cyan-900/10 hover:opacity-90 transition">
+          <i data-lucide="wand-2" class="w-4 h-4"></i> Start Designing
+        </a>
+        <a id="heroWa" href="#" target="_blank" class="border border-slate-300 text-slate-800 font-semibold px-6 py-3.5 rounded-full flex items-center gap-2 hover:border-slate-400 transition">
+          <i data-lucide="message-circle" class="w-4 h-4 text-green-600"></i> Inquire via WhatsApp
+        </a>
+        <a id="getNowBtn" href="#" target="_blank" class="bg-green-600 text-white font-semibold px-6 py-3.5 rounded-full flex items-center gap-2 shadow-lg shadow-green-900/10 hover:bg-green-700 transition">
+          <i data-lucide="zap" class="w-4 h-4"></i> Get Now
+        </a>
+      </div>
+      <!-- 5 step -->
+      <div class="mt-12">
+        <div class="relative">
+          <div class="absolute left-0 right-0 top-4 h-0.5 step-line rounded-full opacity-30"></div>
+          <div class="relative grid grid-cols-5 gap-1 text-center">
+            <div id="s1">
+              <div class="w-8 h-8 mx-auto rounded-full grad-ocean text-white flex items-center justify-center text-xs font-bold">1</div>
+              <p class="text-xs mt-2 font-medium text-slate-600">Design</p>
+            </div>
+            <div>
+              <div class="w-8 h-8 mx-auto rounded-full grad-ocean text-white flex items-center justify-center text-xs font-bold">2</div>
+              <p class="text-xs mt-2 font-medium text-slate-600">Print</p>
+            </div>
+            <div>
+              <div class="w-8 h-8 mx-auto rounded-full grad-ocean text-white flex items-center justify-center text-xs font-bold">3</div>
+              <p class="text-xs mt-2 font-medium text-slate-600">Fill</p>
+            </div>
+            <div>
+              <div class="w-8 h-8 mx-auto rounded-full grad-ocean text-white flex items-center justify-center text-xs font-bold">4</div>
+              <p class="text-xs mt-2 font-medium text-slate-600">Pack</p>
+            </div>
+            <div>
+              <div class="w-8 h-8 mx-auto rounded-full grad-ocean text-white flex items-center justify-center text-xs font-bold">5</div>
+              <p class="text-xs mt-2 font-medium text-slate-600">Ship</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center fade-up" style="animation-delay:.1s">
+      <div class="relative">
+        <div class="absolute -inset-10 grad-ocean opacity-10 blur-3xl rounded-full"></div>
+        <canvas id="heroCanvas" width="280" height="520" class="relative w-[220px] sm:w-[260px] md:w-[280px] h-auto"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMIZER -->
+<section id="customize" class="py-16 px-5 sm:px-8 max-w-7xl mx-auto scroll-mt-20">
+  <div class="text-center max-w-xl mx-auto mb-10">
+    <h2 class="display text-3xl sm:text-4xl font-bold text-slate-900">Design your bottle</h2>
+    <p class="text-slate-600 mt-3">Every choice below updates your bottle and your ad preview instantly.</p>
+  </div>
+  <div class="grid lg:grid-cols-5 gap-8">
+    <!-- canvas -->
+    <div class="lg:col-span-2 flex flex-col items-center">
+      <div class="glass rounded-3xl p-6 sm:p-8 w-full flex justify-center lg:sticky lg:top-24">
+        <canvas id="mainCanvas" width="320" height="560" class="w-[240px] sm:w-[280px] lg:w-[300px] h-auto"></canvas>
+      </div>
+    </div>
+    <!-- controls -->
+    <div class="lg:col-span-3 space-y-6">
+      <div class="glass rounded-2xl p-5 sm:p-6">
+        <p class="text-sm font-semibold text-slate-800 mb-3">Bottle size</p>
+        <div id="sizeGroup" class="flex flex-wrap gap-2">
+          <button data-size="200" class="size-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-300">200 ml</button>
+          <button data-size="250" class="size-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-300">250 ml</button>
+          <button data-size="300" class="size-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-300">300 ml</button>
+          <button data-size="500" class="size-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-300">500 ml</button>
+          <button data-size="1000" class="size-btn px-4 py-2 rounded-full text-sm font-medium border border-slate-300">1 Litre</button>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-5 sm:p-6">
+        <p class="text-sm font-semibold text-slate-800 mb-3">Cap color</p>
+        <div class="flex gap-4">
+          <div class="flex items-center gap-2">
+            <div data-cap="#f8fafc" class="cap-swatch swatch" style="background:#f8fafc;"></div>
+            <span class="text-sm text-slate-600">White</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div data-cap="#111827" class="cap-swatch swatch" style="background:#111827;"></div>
+            <span class="text-sm text-slate-600">Classic Blue/Black</span>
+          </div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-5 sm:p-6">
+        <p class="text-sm font-semibold text-slate-800 mb-3">Label theme</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div data-theme="elegance" class="theme-chip">
+            <div class="h-8 rounded-md" style="background:linear-gradient(135deg,#0f172a,#334155);"></div>
+            <p class="text-xs mt-1.5 font-medium text-slate-600">Elegance</p>
+          </div>
+          <div data-theme="party" class="theme-chip">
+            <div class="h-8 rounded-md" style="background:linear-gradient(135deg,#db2777,#f97316);"></div>
+            <p class="text-xs mt-1.5 font-medium text-slate-600">Party Vibe</p>
+          </div>
+          <div data-theme="minimal" class="theme-chip">
+            <div class="h-8 rounded-md border border-slate-200" style="background:#ffffff;"></div>
+            <p class="text-xs mt-1.5 font-medium text-slate-600">Minimal White</p>
+          </div>
+          <div data-theme="corporate" class="theme-chip">
+            <div class="h-8 rounded-md" style="background:linear-gradient(135deg,#0284c7,#06b6d4);"></div>
+            <p class="text-xs mt-1.5 font-medium text-slate-600">Corporate Blue</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-5 sm:p-6 space-y-4">
+        <p class="text-sm font-semibold text-slate-800">Label text</p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs text-slate-500">Event / Brand name</label>
+            <input id="eventName" maxlength="20" value="Aisha & Raj" class="w-full mt-1 rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500">
+          </div>
+          <div>
+            <label class="text-xs text-slate-500">Subtitle / Date</label>
+            <input id="subtitle" maxlength="20" value="14th Feb 2027" class="w-full mt-1 rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500">
+          </div>
+          <div>
+            <label class="text-xs text-slate-500">Monogram initial</label>
+            <input id="monogram" maxlength="2" value="AR" class="w-full mt-1 rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500">
+          </div>
+          <div>
+            <label class="text-xs text-slate-500">Upload logo / photo</label>
+            <div class="flex gap-2 mt-1">
+              <input id="logoUpload" type="file" accept="image/*" class="hidden">
+              <button id="uploadBtn" class="flex-1 flex items-center justify-center gap-2 rounded-xl border border-dashed border-slate-300 px-3 py-2.5 text-sm text-slate-600 hover:border-cyan-500 hover:text-cyan-700 transition">
+                <i data-lucide="upload" class="w-4 h-4"></i> Upload
+              </button>
+              <button id="removeLogoBtn" class="rounded-xl border border-slate-300 px-3 py-2.5 text-sm text-slate-500 hover:bg-slate-50" title="Remove logo">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORYBOARD -->
+<section id="storyboard" class="py-16 px-5 sm:px-8 max-w-7xl mx-auto scroll-mt-20">
+  <div class="text-center max-w-xl mx-auto mb-10">
+    <h2 class="display text-3xl sm:text-4xl font-bold text-slate-900">Your 10-second ad, live</h2>
+    <p class="text-slate-600 mt-3">This storyboard updates with every change you make above — this is what your Meta ad could look like.</p>
+  </div>
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="glass rounded-2xl p-3">
+      <canvas id="panel1" width="220" height="390" class="w-full h-auto rounded-xl"></canvas>
+      <p class="text-xs font-semibold text-slate-500 mt-2">0–2s · The Hook</p>
+      <p class="text-xs text-slate-600 mt-0.5">"Still using other brand water bottles for your event?"</p>
+    </div>
+    <div class="glass rounded-2xl p-3">
+      <canvas id="panel2" width="220" height="390" class="w-full h-auto rounded-xl"></canvas>
+      <p class="text-xs font-semibold text-slate-500 mt-2">2–4s · The Transformation</p>
+      <p class="text-xs text-slate-600 mt-0.5">"It's time to use YOUR OWN customized brand bottle!"</p>
+    </div>
+    <div class="glass rounded-2xl p-3">
+      <canvas id="panel3" width="220" height="390" class="w-full h-auto rounded-xl"></canvas>
+      <p class="text-xs font-semibold text-slate-500 mt-2">4–6s · The Offer</p>
+      <p class="text-xs text-slate-600 mt-0.5">"Order even 1 pack. We design, print, fill, pack & ship."</p>
+    </div>
+    <div class="glass rounded-2xl p-3">
+      <canvas id="panel4" width="220" height="390" class="w-full h-auto rounded-xl"></canvas>
+      <p class="text-xs font-semibold text-slate-500 mt-2">6–10s · The CTA</p>
+      <p class="text-xs text-slate-600 mt-0.5">"Order confirmed! DM EasyWater — NO MINIMUM ORDER."</p>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="py-16 px-5 sm:px-8 max-w-7xl mx-auto scroll-mt-20">
+  <div class="text-center max-w-xl mx-auto mb-10">
+    <h2 class="display text-3xl sm:text-4xl font-bold text-slate-900">Made for every occasion</h2>
+    <p class="text-slate-600 mt-3">One bottle, dressed for whatever you're celebrating.</p>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+    <div class="event-card glass rounded-2xl p-5 hover:-translate-y-1 transition cursor-pointer" data-theme="elegance">
+      <i data-lucide="heart" class="w-6 h-6 text-cyan-600"></i>
+      <p class="font-semibold mt-3 text-slate-900">Weddings &amp; Anniversaries</p>
+      <p class="text-sm text-slate-500 mt-1">Elegant monograms for the big day.</p>
+    </div>
+    <div class="event-card glass rounded-2xl p-5 hover:-translate-y-1 transition cursor-pointer" data-theme="party">
+      <i data-lucide="party-popper" class="w-6 h-6 text-cyan-600"></i>
+      <p class="font-semibold mt-3 text-slate-900">Birthdays &amp; Parties</p>
+      <p class="text-sm text-slate-500 mt-1">Playful colors your guests remember.</p>
+    </div>
+    <div class="event-card glass rounded-2xl p-5 hover:-translate-y-1 transition cursor-pointer" data-theme="corporate">
+      <i data-lucide="briefcase" class="w-6 h-6 text-cyan-600"></i>
+      <p class="font-semibold mt-3 text-slate-900">Corporate &amp; Conferences</p>
+      <p class="text-sm text-slate-500 mt-1">On-brand hydration for delegates.</p>
+    </div>
+    <div class="event-card glass rounded-2xl p-5 hover:-translate-y-1 transition cursor-pointer" data-theme="minimal">
+      <i data-lucide="utensils" class="w-6 h-6 text-cyan-600"></i>
+      <p class="font-semibold mt-3 text-slate-900">Restaurants &amp; Hotels</p>
+      <p class="text-sm text-slate-500 mt-1">Clean labels for daily service.</p>
+    </div>
+    <div class="event-card glass rounded-2xl p-5 hover:-translate-y-1 transition cursor-pointer" data-theme="corporate">
+      <i data-lucide="calendar-days" class="w-6 h-6 text-cyan-600"></i>
+      <p class="font-semibold mt-3 text-slate-900">Exhibitions &amp; Expos</p>
+      <p class="text-sm text-slate-500 mt-1">Booth-ready branding at scale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 px-5 sm:px-8 max-w-4xl mx-auto text-center">
+  <div class="glass rounded-3xl p-10 sm:p-14">
+    <h2 class="display text-3xl sm:text-4xl font-bold text-slate-900">Ready to see it in your hands?</h2>
+    <p class="text-slate-600 mt-3">Send us your design and we'll confirm details over WhatsApp — no minimum order, ever.</p>
+    <a id="footerWa" href="#" target="_blank" class="inline-flex items-center gap-2 grad-ocean text-white font-semibold px-7 py-3.5 rounded-full mt-6 shadow-lg shadow-cyan-900/10 hover:opacity-90 transition">
+      <i data-lucide="message-circle" class="w-4 h-4"></i> Inquire via WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer class="py-8 px-5 flex flex-col items-center gap-2 text-center text-sm text-slate-400">
+  <svg class="w-6 h-6" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 3h8v5.2c0 .9.4 1.7 1 2.4l7.4 8.4c1.7 1.9 2.6 4.4 2.6 6.9v.3C35 31.8 29.6 37 22.9 37h-5.8C10.4 37 5 31.8 5 25.2v-.3c0-2.5.9-5 2.6-6.9L15 9.6c.6-.7 1-1.5 1-2.4V3Z" fill="url(#logoGrad)"/>
+  </svg>
+  <span>EasyWater · Custom packaged drinking water for every event</span>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="fixed bottom-0 inset-x-0 z-40 sm:hidden glass border-t border-slate-200 px-4 py-3" style="padding-bottom:env(safe-area-inset-bottom,12px);">
+  <a id="stickyWa" href="#" target="_blank" class="w-full grad-ocean text-white font-semibold py-3 rounded-full flex items-center justify-center gap-2">
+    <i data-lucide="message-circle" class="w-4 h-4"></i> Get Custom Quote
+  </a>
+</div>
+<div class="h-16 sm:hidden"></div>
+
+<script>
+lucide.createIcons();
+
+const WA_NUMBER = "911234567890"; // replace with EasyWater's WhatsApp number
+
+const THEMES = {
+  elegance:  {bg:['#0f172a','#334155'], text:'#f8fafc', accent:'#cbd5e1', name:'Elegance'},
+  party:     {bg:['#db2777','#f97316'], text:'#ffffff', accent:'#fff7ed', name:'Party Vibe'},
+  minimal:   {bg:['#ffffff','#f1f5f9'], text:'#0f172a', accent:'#64748b', name:'Minimal White'},
+  corporate: {bg:['#0284c7','#06b6d4'], text:'#ffffff', accent:'#e0f2fe', name:'Corporate Blue'},
+};
+
+const state = {
+  size: 500,
+  cap: '#111827',
+  theme: 'elegance',
+  eventName: 'Aisha & Raj',
+  subtitle: '14th Feb 2027',
+  monogram: 'AR',
+  logo: null,
+};
+
+const SIZE_RATIO = {200:0.62, 250:0.68, 300:0.74, 500:0.86, 1000:1.0};
+
+function labelGradient(ctx,x,y,w,h,theme){
+  const g = ctx.createLinearGradient(x,y,x,y+h);
+  g.addColorStop(0, theme.bg[0]);
+  g.addColorStop(1, theme.bg[1]);
+  return g;
+}
+
+function drawBottle(canvas, opts){
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  const scale = SIZE_RATIO[opts.size] || 0.86;
+  const bodyW = W*0.52*Math.min(scale+0.18,1.05);
+  const cx = W/2;
+  const neckW = bodyW*0.34;
+  const capH = H*0.07;
+  const neckH = H*0.09;
+  const shoulderH = H*0.07;
+  const bodyH = H*0.63*scale + H*0.18;
+  const topY = H*0.06 + (H*0.18 - H*0.18*scale);
+  const capY = topY;
+  const neckY = capY + capH;
+  const shoulderY = neckY + neckH;
+  const bodyTopY = shoulderY + shoulderH;
+  const bodyBotY = bodyTopY + bodyH;
+  const baseH = H*0.05;
+
+  // --- body (clear PET) ---
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(cx-neckW/2, neckY);
+  ctx.lineTo(cx+neckW/2, neckY);
+  ctx.lineTo(cx+neckW/2, shoulderY);
+  ctx.quadraticCurveTo(cx+bodyW/2, shoulderY, cx+bodyW/2, shoulderY+shoulderH);
+  ctx.lineTo(cx+bodyW/2, bodyBotY-baseH);
+  ctx.quadraticCurveTo(cx+bodyW/2, bodyBotY, cx+bodyW/2-baseH*0.6, bodyBotY);
+  ctx.lineTo(cx-bodyW/2+baseH*0.6, bodyBotY);
+  ctx.quadraticCurveTo(cx-bodyW/2, bodyBotY, cx-bodyW/2, bodyBotY-baseH);
+  ctx.lineTo(cx-bodyW/2, shoulderY+shoulderH);
+  ctx.quadraticCurveTo(cx-bodyW/2, shoulderY, cx-neckW/2, shoulderY);
+  ctx.closePath();
+  const bodyPath = new Path2D();
+  ctx.save();
+  const bg = ctx.createLinearGradient(cx-bodyW/2,0,cx+bodyW/2,0);
+  bg.addColorStop(0,'rgba(186,230,253,0.55)');
+  bg.addColorStop(0.15,'rgba(255,255,255,0.9)');
+  bg.addColorStop(0.5,'rgba(224,242,254,0.35)');
+  bg.addColorStop(0.85,'rgba(255,255,255,0.85)');
+  bg.addColorStop(1,'rgba(148,197,224,0.5)');
+  ctx.fillStyle = bg;
+  ctx.fill();
+  ctx.restore();
+  ctx.lineWidth = 1.4;
+  ctx.strokeStyle = 'rgba(100,140,170,0.55)';
+  ctx.stroke();
+
+  // rib grooves on shoulder+base area
+  ctx.clip();
+  ctx.strokeStyle = 'rgba(100,140,170,0.28)';
+  ctx.lineWidth = 1;
+  for(let i=0;i<5;i++){
+    const ry = bodyBotY - baseH - i*7;
+    ctx.beginPath();
+    ctx.moveTo(cx-bodyW/2, ry);
+    ctx.lineTo(cx+bodyW/2, ry);
+    ctx.stroke();
+  }
+  for(let i=0;i<4;i++){
+    const ry = shoulderY+shoulderH+10 + i*7;
+    ctx.beginPath();
+    ctx.moveTo(cx-bodyW/2, ry);
+    ctx.lineTo(cx+bodyW/2, ry);
+    ctx.stroke();
+  }
+  // water fill tint lower 2/3
+  const waterTop = bodyTopY + (bodyH*0.18);
+  const wg = ctx.createLinearGradient(0,waterTop,0,bodyBotY);
+  wg.addColorStop(0,'rgba(6,182,212,0.10)');
+  wg.addColorStop(1,'rgba(2,132,199,0.18)');
+  ctx.fillStyle = wg;
+  ctx.fillRect(cx-bodyW/2, waterTop, bodyW, bodyBotY-waterTop);
+  // vertical sheen highlight
+  const sheen = ctx.createLinearGradient(cx-bodyW*0.32,0,cx-bodyW*0.06,0);
+  sheen.addColorStop(0,'rgba(255,255,255,0)');
+  sheen.addColorStop(0.5,'rgba(255,255,255,0.85)');
+  sheen.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.fillStyle = sheen;
+  ctx.fillRect(cx-bodyW*0.32, bodyTopY, bodyW*0.26, bodyH);
+  ctx.restore();
+
+  // --- label ---
+  const labelH = bodyH*0.4;
+  const labelY = bodyTopY + bodyH*0.32;
+  const labelW = bodyW*0.98;
+  const labelX = cx-labelW/2;
+  const theme = THEMES[opts.theme];
+  ctx.save();
+  const r=10;
+  ctx.beginPath();
+  ctx.moveTo(labelX+r,labelY);
+  ctx.arcTo(labelX+labelW,labelY,labelX+labelW,labelY+labelH,r);
+  ctx.arcTo(labelX+labelW,labelY+labelH,labelX,labelY+labelH,r);
+  ctx.arcTo(labelX,labelY+labelH,labelX,labelY,r);
+  ctx.arcTo(labelX,labelY,labelX+labelW,labelY,r);
+  ctx.closePath();
+  ctx.clip();
+  ctx.fillStyle = labelGradient(ctx,labelX,labelY,labelW,labelH,theme);
+  ctx.fillRect(labelX,labelY,labelW,labelH);
+
+  if(opts.logo){
+    const img = opts.logo;
+    const pad = labelW*0.12;
+    const imgSize = Math.min(labelW-pad*2, labelH*0.62);
+    const ix = cx-imgSize/2, iy = labelY+labelH*0.08;
+    const ir = imgSize/2;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, iy+ir, ir, 0, Math.PI*2);
+    ctx.closePath();
+    ctx.clip();
+    // cover-fit
+    const ar = img.width/img.height;
+    let dw,dh;
+    if(ar>1){dh=imgSize;dw=imgSize*ar;}else{dw=imgSize;dh=imgSize/ar;}
+    ctx.drawImage(img, ix-(dw-imgSize)/2, iy-(dh-imgSize)/2, dw, dh);
+    ctx.restore();
+    ctx.strokeStyle='rgba(255,255,255,.7)'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.arc(cx,iy+ir,ir,0,Math.PI*2); ctx.stroke();
+    ctx.fillStyle = theme.text;
+    ctx.textAlign='center';
+    ctx.font = `700 ${Math.max(10,labelW*0.09)}px Sora, sans-serif`;
+    ctx.fillText(opts.eventName, cx, iy+imgSize+labelH*0.16);
+    ctx.font = `500 ${Math.max(8,labelW*0.065)}px Inter, sans-serif`;
+    ctx.fillStyle = theme.accent;
+    ctx.fillText(opts.subtitle, cx, iy+imgSize+labelH*0.28);
+  } else {
+    ctx.textAlign='center';
+    ctx.fillStyle = theme.accent;
+    ctx.font = `700 ${Math.max(14,labelW*0.16)}px Sora, sans-serif`;
+    ctx.fillText(opts.monogram || '', cx, labelY+labelH*0.34);
+    ctx.fillStyle = theme.text;
+    ctx.font = `700 ${Math.max(10,labelW*0.1)}px Sora, sans-serif`;
+    ctx.fillText(opts.eventName, cx, labelY+labelH*0.58);
+    ctx.font = `500 ${Math.max(8,labelW*0.075)}px Inter, sans-serif`;
+    ctx.fillStyle = theme.accent;
+    ctx.fillText(opts.subtitle, cx, labelY+labelH*0.74);
+  }
+  ctx.restore();
+
+  // --- neck threading ---
+  ctx.save();
+  ctx.strokeStyle='rgba(100,140,170,0.5)'; ctx.lineWidth=1.2;
+  for(let i=0;i<3;i++){
+    const ry = neckY + neckH*0.25 + i*(neckH*0.28);
+    ctx.beginPath();
+    ctx.moveTo(cx-neckW/2, ry); ctx.lineTo(cx+neckW/2, ry);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // --- cap ---
+  ctx.save();
+  const capR = 6;
+  const capW = neckW*1.18;
+  const capX = cx-capW/2;
+  ctx.beginPath();
+  ctx.moveTo(capX+capR, capY);
+  ctx.arcTo(capX+capW, capY, capX+capW, capY+capH, capR);
+  ctx.arcTo(capX+capW, capY+capH, capX, capY+capH, capR);
+  ctx.arcTo(capX, capY+capH, capX, capY, capR);
+  ctx.arcTo(capX, capY, capX+capW, capY, capR);
+  ctx.closePath();
+  const capG = ctx.createLinearGradient(capX,0,capX+capW,0);
+  const c = opts.cap;
+  capG.addColorStop(0, shade(c,-12));
+  capG.addColorStop(0.5, shade(c, 10));
+  capG.addColorStop(1, shade(c,-12));
+  ctx.fillStyle = capG;
+  ctx.fill();
+  ctx.strokeStyle='rgba(0,0,0,0.15)'; ctx.lineWidth=1; ctx.stroke();
+  ctx.strokeStyle='rgba(0,0,0,0.1)';
+  for(let i=1;i<4;i++){
+    ctx.beginPath();
+    ctx.moveTo(capX, capY+capH*i/4); ctx.lineTo(capX+capW, capY+capH*i/4); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function shade(hex, pct){
+  const n = parseInt(hex.slice(1),16);
+  let r=(n>>16)+pct, g=((n>>8)&0xff)+pct, b=(n&0xff)+pct;
+  r=Math.max(0,Math.min(255,r)); g=Math.max(0,Math.min(255,g)); b=Math.max(0,Math.min(255,b));
+  return `rgb(${r},${g},${b})`;
+}
+
+function renderAll(){
+  const opts = {...state};
+  drawBottle(document.getElementById('mainCanvas'), opts);
+  drawBottle(document.getElementById('heroCanvas'), opts);
+  drawStoryboard(opts);
+}
+
+function drawStoryboard(opts){
+  // panel1: generic plain bottle
+  const p1 = document.getElementById('panel1');
+  drawBottle(p1, {...opts, theme:'minimal', logo:null, eventName:'', subtitle:'', monogram:''});
+  panelText(p1,'STILL USING\nother brand bottles?', '#0f172a');
+
+  // panel2: custom transformation
+  const p2 = document.getElementById('panel2');
+  drawBottle(p2, opts);
+  panelText(p2,'NOW YOUR\nOWN BRAND', '#0284c7');
+
+  // panel3: multiple themed versions mini
+  const p3 = document.getElementById('panel3');
+  const ctx3 = p3.getContext('2d');
+  ctx3.clearRect(0,0,p3.width,p3.height);
+  const mini = document.createElement('canvas'); mini.width=p3.width; mini.height=p3.height;
+  ['elegance','party','corporate'].forEach((th,i)=>{
+    drawBottle(mini, {...opts, theme:th});
+    ctx3.save();
+    ctx3.translate(30+i*70, 40);
+    ctx3.scale(0.42,0.42);
+    ctx3.drawImage(mini,0,0);
+    ctx3.restore();
+  });
+  panelText(p3,'ONE BOTTLE.\nEVERY EVENT.', '#06b6d4', true);
+
+  // panel4: cta with confirmation
+  const p4 = document.getElementById('panel4');
+  drawBottle(p4, opts);
+  panelText(p4,'ORDER\nCONFIRMED ✓', '#16a34a');
+  const ctx4 = p4.getContext('2d');
+  ctx4.save();
+  ctx4.fillStyle='#16a34a';
+  ctx4.beginPath();
+  ctx4.roundRect(p4.width-64,p4.height-50,52,32,8);
+  ctx4.fill();
+  ctx4.fillStyle='#fff'; ctx4.font='700 11px Inter'; ctx4.textAlign='center';
+  ctx4.fillText('WhatsApp', p4.width-38, p4.height-30);
+  ctx4.restore();
+}
+
+function panelText(canvas, text, color, skipBottom){
+  const ctx = canvas.getContext('2d');
+  ctx.save();
+  ctx.fillStyle='rgba(15,23,42,0.75)';
+  ctx.fillRect(0,0,canvas.width,32);
+  ctx.fillStyle='#fff';
+  ctx.font='700 11px Sora, sans-serif';
+  ctx.textAlign='center';
+  const lines = text.split('\n');
+  lines.forEach((l,i)=> ctx.fillText(l, canvas.width/2, 13+i*13));
+  ctx.restore();
+}
+
+// ---- events ----
+document.querySelectorAll('.size-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    state.size = Number(btn.dataset.size);
+    document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('bg-[var(--ink)]','text-white','border-transparent'));
+    btn.classList.add('bg-[var(--ink)]','text-white','border-transparent');
+    renderAll(); updateWaLinks();
+  });
+});
+document.querySelectorAll('.size-btn')[3].click();
+
+document.querySelectorAll('.cap-swatch').forEach(sw=>{
+  sw.addEventListener('click', ()=>{
+    state.cap = sw.dataset.cap;
+    document.querySelectorAll('.cap-swatch').forEach(s=>s.classList.remove('active'));
+    sw.classList.add('active');
+    renderAll(); updateWaLinks();
+  });
+});
+document.querySelectorAll('.cap-swatch')[1].click();
+
+document.querySelectorAll('.theme-chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    state.theme = chip.dataset.theme;
+    document.querySelectorAll('.theme-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    renderAll(); updateWaLinks();
+  });
+});
+document.querySelector('.theme-chip[data-theme="elegance"]').classList.add('active');
+
+document.querySelectorAll('.event-card').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    const th = card.dataset.theme;
+    document.querySelector(`.theme-chip[data-theme="${th}"]`).click();
+    document.getElementById('customize').scrollIntoView({behavior:'smooth'});
+  });
+});
+
+['eventName','subtitle','monogram'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', e=>{
+    state[id] = e.target.value;
+    renderAll(); updateWaLinks();
+  });
+});
+
+document.getElementById('uploadBtn').addEventListener('click', ()=> document.getElementById('logoUpload').click());
+document.getElementById('logoUpload').addEventListener('change', e=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev=>{
+    const img = new Image();
+    img.onload = ()=>{ state.logo = img; renderAll(); };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+document.getElementById('removeLogoBtn').addEventListener('click', ()=>{
+  state.logo = null;
+  document.getElementById('logoUpload').value='';
+  renderAll();
+});
+
+function buildWaLink(){
+  const theme = THEMES[state.theme].name;
+  const capName = state.cap === '#f8fafc' ? 'White' : 'Classic Blue/Black';
+  const msg = `Hi EasyWater! I want to inquire about ordering a custom water bottle pack.\n\n`+
+    `Bottle Size: ${state.size}ml\nCap Color: ${capName}\nTheme: ${theme}\nEvent Text: ${state.eventName} — ${state.subtitle}\n\n`+
+    `Please share details and pricing.`;
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+function updateWaLinks(){
+  const link = buildWaLink();
+  ['navCta','heroWa','footerWa','stickyWa','getNowBtn'].forEach(id=>{
+    document.getElementById(id).href = link;
+  });
+}
+
+renderAll();
+updateWaLinks();
+window.addEventListener('resize', ()=>{}); // canvases are fixed-res, css scales them
+</script>
+</body>
+</html>
